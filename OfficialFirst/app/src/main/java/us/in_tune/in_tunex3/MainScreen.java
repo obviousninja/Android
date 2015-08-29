@@ -1,19 +1,19 @@
 package us.in_tune.in_tunex3;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 /**
  * Created by Randy on 8/29/2015.
  */
-public class NeedAccount extends AppCompatActivity {
+public class MainScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.need_accountsheet);
+        setContentView(R.layout.main_sheet);
     }
 
     @Override
@@ -37,4 +37,6 @@ public class NeedAccount extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -14,7 +14,124 @@
         android:src="@drawable/pawn1"
         android:layout_gravity="center"/>
 
+    <LinearLayout
 
+        android:layout_width="match_parent"
+        android:layout_height = "20dp"
+        android:background="@color/orange"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_margin="1dp"
+            android:background="@color/deepOrange"
+            android:text="Create Account"
+            android:textColor="@color/lightYellow"
+            />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_gravity="center"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Enter Email"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_gravity="center"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Enter Security Question"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_gravity="center"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Enter Password"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <!-- used to adjust the submit to the right -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height = "50dp"
+            android:background="@color/orange"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            >
+
+            <TextView
+                android:layout_width="138dp"
+                android:layout_height="48dp"
+                android:layout_margin="1dp"
+                android:background="@color/deepOrange"
+                android:textColor="@color/lightYellow"
+                android:text="Register"
+                android:gravity="center"
+                android:clickable="true"
+
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>
