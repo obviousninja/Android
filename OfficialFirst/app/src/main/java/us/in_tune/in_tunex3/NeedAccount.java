@@ -1,12 +1,14 @@
 package us.in_tune.in_tunex3;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-public class Login1 extends AppCompatActivity {
+/**
+ * Created by Randy on 8/29/2015.
+ */
+public class NeedAccount extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

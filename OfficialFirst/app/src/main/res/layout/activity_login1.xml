@@ -29,7 +29,6 @@ android:orientation="vertical"
             android:textColorHint="@color/lightYellow"
             android:id="@+id/userinput"
             android:gravity="center"
-
             />
 
     </LinearLayout>
