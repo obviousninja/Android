@@ -4,4 +4,11 @@
     <color name="deepOrange">#CC6600</color>
     <color name="lightYellow">#FFFBD0</color>
     <color name="orangeRed">#c15100</color>
+    <color name="purplepink">#c5aaf5</color>
+    <color name="darkgreen">#8cab2c</color>
+    <color name="teal">#79bfa1</color>
+    <color name="lightorange">#f5a352</color>
+    <color name="heavypink">#fb7374</color>
+    <color name="lightblack">#423c40</color>
+
 </resources>
