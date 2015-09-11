@@ -78,12 +78,15 @@ public class Login1 extends AppCompatActivity {
                 passwordField = (EditText) findViewById(R.id.passwordinput);
                 givenPassword = passwordField.getText().toString();
 
+
                 String[] newString = {givenUserName, givenPassword};
                 //String[] newString = {"<script>location.href('http://www.hacked.com')</script>", givenPassword}; //this is a test
 
                 System.out.println(givenUserName + " " + givenPassword);
 
-                Toast.makeText(currentContext, "Connecting to Server...", Toast.LENGTH_LONG).show();
+                //username and password error handling
+
+                Toast.makeText(currentContext, "Connecting to Server...", Toast.LENGTH_SHORT).show();
 
                 new HttpTaskSignIn().execute(newString);
 
@@ -92,6 +95,24 @@ public class Login1 extends AppCompatActivity {
                // startActivityForResult(new Intent(getApplicationContext(), MainScreen.class), signinRequest);
             }
         });
+
+        View facebooklog =  findViewById(R.id.loginFacebook);
+        facebooklog.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(currentContext, "Function Not Yet Supported", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        View googlelog = findViewById(R.id.loginGoogle);
+        googlelog.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(currentContext, "Function Not Yet Supported", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -146,6 +167,7 @@ public class Login1 extends AppCompatActivity {
         private String usernameParam,passwordParam;
         private final String url = "http://in-tune.us/loginCheck.php";
 
+        //returns null if result is valid, otherwise, return null
         @Override
         protected String doInBackground(String... params) {
 
@@ -161,6 +183,12 @@ public class Login1 extends AppCompatActivity {
                 passwordParam = Html.escapeHtml(params[1].toString()).toString();
                 //System.out.println("interior: " + params[0] + " " + params[1]);
                 //System.out.println("interior: " + usernameParam + " " + passwordParam);
+                if(usernameParam == null || usernameParam.compareTo("")==0){
+                    return null;
+                }
+                if(passwordParam == null || passwordParam.compareTo("")==0){
+                    return null;
+                }
 
 
                // Toast.makeText(currentContext, usernameParam + " " + passwordParam, Toast.LENGTH_LONG );
@@ -169,7 +197,7 @@ public class Login1 extends AppCompatActivity {
                 URL request = new URL(url);
                 String query = String.format("loginInput=%s&passInput=%s", URLEncoder.encode(usernameParam, charset), URLEncoder.encode(passwordParam, charset));
 
-                //publishProgress("Connecting To Server...");
+
                 //opening connection and set properties for post
                 HttpURLConnection conn = (HttpURLConnection) request.openConnection();
                 conn.setDoOutput(true);
@@ -190,6 +218,9 @@ public class Login1 extends AppCompatActivity {
                     newString = newString + (char)newchar;
 
                 }
+
+                //TODO valid answer ONLY happens if the database has the username and the password,
+                //so account registration must be implemented before you can test if valid input is properly implemented
 
                 System.out.println(newString);
 
@@ -216,7 +247,13 @@ public class Login1 extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
             //do nothing
-            Toast.makeText(currentContext, "Verified", Toast.LENGTH_LONG).show();
+            if(result == null || result.compareTo("") ==0){
+                Toast.makeText(currentContext, "Invalid Username or Password", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(currentContext, "Verified", Toast.LENGTH_LONG).show();
+            }
+
+            //TODO verify result
 
         }
     }

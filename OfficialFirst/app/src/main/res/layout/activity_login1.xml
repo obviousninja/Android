@@ -156,6 +156,7 @@ android:orientation="vertical"
                 android:gravity="center"
                 android:clickable="true"
                 android:textSize="10sp"
+                android:id="@+id/loginFacebook"
                 />
         </LinearLayout>
 
@@ -181,6 +182,7 @@ android:orientation="vertical"
                 android:gravity="center"
                 android:clickable="true"
                 android:textSize="10sp"
+                android:id="@+id/loginGoogle"
                 />
         </LinearLayout>
 
