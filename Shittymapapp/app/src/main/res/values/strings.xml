@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Shitty map app</string>
+    <string name="title_activity_main_shitty_map">Map</string>
+</resources>
