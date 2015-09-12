@@ -115,6 +115,8 @@ public class NeedAccount extends AppCompatActivity {
                 }
 
                 System.out.println(newString);
+
+
                 return newString;
 
             }catch(MalformedURLException e){
@@ -138,15 +140,23 @@ public class NeedAccount extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result == null || result.compareTo("") ==0){
-                //Toast.makeText(mContext, "Invalid Username or Password", Toast.LENGTH_LONG).show();
-                finish();
+            int retInt = new Integer(result);
+
+            setResult(retInt);
+            if(retInt != 0){
+                Toast.makeText(mContext, "Account Already Exist", Toast.LENGTH_LONG).show();
+                EditText emailEText = (EditText) findViewById(R.id.registerEmail);
+                EditText passEText = (EditText) findViewById(R.id.registerPassword);
+
+                emailEText.setText("");
+                passEText.setText("");
+
             }else{
-                //TODO handle all cases returned
-                //Toast.makeText(mContext, "Verified", Toast.LENGTH_LONG).show();
+                setResult(retInt);
                 finish();
             }
-           return;
+
+
         }
 
     }

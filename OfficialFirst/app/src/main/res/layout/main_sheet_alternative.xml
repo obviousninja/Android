@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="5"
     android:background="@color/orangeRed"
@@ -8,87 +8,81 @@
 
   <!--linear layout might not work, recommend relativelayout or framelayout -->
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:id="@+id/mapFragmentContainer"
-    >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="map fragment, have to attach it programmatically"
-    android:gravity="center"
-    />
-
-
-</FrameLayout>
-
-<HorizontalScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="4"
-    android:background="#22000000"
-    >
-
-    <LinearLayout
+    <fragment
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="match_parent" android:id="@+id/map1"
+        tools:context="us.in_tune.in_tunex3.MainScreen"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
+
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="4"
+        android:background="#55000000"
+        android:layout_alignParentBottom="true"
         >
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="you are bad"
-            android:background="#00ff00ff"
-            />
+            android:orientation="horizontal"
+            >
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="you are bad"
+                android:background="#00ff00ff"
+                />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="you are bad 2"
-            />
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="you are bad 2"
+                />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="you are bad 3"
-            />
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="you are bad 3"
+                />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="you are bad 3"
-            />
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="you are bad 3"
+                />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="you are bad 4"
-            />
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
 
-
-    </LinearLayout>
-
-</HorizontalScrollView>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="you are bad 4"
+                />
 
 
-</LinearLayout>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+</RelativeLayout>

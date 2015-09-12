@@ -34,7 +34,9 @@ public class Login1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login1);
+        setContentView(R.layout.activity_login1); //correct code, temporarily offline
+
+
         currentContext = getApplicationContext();
 
         //forgot password activity activation.
@@ -124,6 +126,19 @@ public class Login1 extends AppCompatActivity {
                 break;
             case 2:
                 //register account request call back
+                System.out.println("Here is the requestCode: " + requestCode + "Result Code: " + resultCode);
+                if(resultCode == 0){
+                    System.out.println("Success OMG HOOPIEE");
+                    Toast.makeText(currentContext, "Registered", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 1){
+                    System.out.println("Failure OMG FAILURE");
+                    Toast.makeText(currentContext, "Not Registered", Toast.LENGTH_LONG).show();
+                }else{
+                    System.out.println("Erorr! OMG ERROR!");
+                    //Toast.makeText(currentContext, "", Toast.LENGTH_LONG).show();
+                }
+
+
                 break;
             case 3:
 
@@ -246,16 +261,27 @@ public class Login1 extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result){
-            //do nothing
-            if(result == null || result.compareTo("") ==0){
-                Toast.makeText(currentContext, "Invalid Username or Password", Toast.LENGTH_LONG).show();
 
+
+            int retInt = new Integer(result);
+            if(retInt == 0){
+                //correct username and password, so we should just start the next activity
+                //we may need to pass in some variables to the intent before the transmission
+                Intent mainIntent = new Intent(currentContext, MainScreen.class);
+
+
+                //pass variables here
+
+                //starting activity
+                startActivity(mainIntent);
+
+            }else if(retInt == 1){
+                //incorrect username and password
+                Toast.makeText(currentContext, "Invalid Username/Password", Toast.LENGTH_LONG).show();
             }else{
-                //TODO verify result
-                Toast.makeText(currentContext, "Verified", Toast.LENGTH_LONG).show();
+                //error
+                Toast.makeText(currentContext, "Error", Toast.LENGTH_LONG).show();
             }
-
-
 
         }
     }

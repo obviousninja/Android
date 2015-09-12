@@ -18,8 +18,6 @@ public class MapsActivityFragment extends FragmentActivity {
         setContentView(R.layout.activity_maps_activity_fragment);
         setUpMapIfNeeded();
 
-
-
     }
 
     @Override
