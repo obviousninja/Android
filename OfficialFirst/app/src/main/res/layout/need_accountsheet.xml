@@ -50,7 +50,7 @@
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
-
+            android:id="@+id/registerEmail"
             />
     </LinearLayout>
 
@@ -67,12 +67,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Enter Security Question"
+            android:hint="Enter Phone Number"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
-
+            android:id="@+id/registerPhoneNumber"
             />
     </LinearLayout>
 
@@ -94,6 +94,7 @@
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
+            android:id="@+id/registerPassword"
             />
     </LinearLayout>
 
@@ -125,7 +126,7 @@
                 android:text="Register"
                 android:gravity="center"
                 android:clickable="true"
-
+                android:id="@+id/registration"
                 />
 
         </LinearLayout>

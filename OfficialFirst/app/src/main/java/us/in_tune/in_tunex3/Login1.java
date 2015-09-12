@@ -176,7 +176,7 @@ public class Login1 extends AppCompatActivity {
             //have to escape html from usernameparam and password param in order to foil the attackers
             //username param
 
-            System.out.println("i got here");
+          //  System.out.println("i got here");
 
             try{
                 usernameParam = Html.escapeHtml(params[0].toString()).toString();
@@ -249,11 +249,13 @@ public class Login1 extends AppCompatActivity {
             //do nothing
             if(result == null || result.compareTo("") ==0){
                 Toast.makeText(currentContext, "Invalid Username or Password", Toast.LENGTH_LONG).show();
+
             }else{
+                //TODO verify result
                 Toast.makeText(currentContext, "Verified", Toast.LENGTH_LONG).show();
             }
 
-            //TODO verify result
+
 
         }
     }

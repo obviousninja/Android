@@ -31,8 +31,10 @@
         <activity android:name=".ForgotPassword"
             android:label="Forgot Password"/>
 
-        <activity android:name=".NeedAccount"
-android:label="Need Account"></activity>
+        <activity
+            android:name=".NeedAccount"
+            android:label="Need Account"
+            />
 
         <activity android:name=".MainScreen"
             android:label="Main Screen"></activity>
