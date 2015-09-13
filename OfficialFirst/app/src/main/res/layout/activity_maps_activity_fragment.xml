@@ -6,3 +6,5 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
 
     />
+
+<!-- this is a auto generated Google Map-->

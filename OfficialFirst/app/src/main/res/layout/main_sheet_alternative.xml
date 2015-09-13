@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="5"
     android:background="@color/orangeRed"
+    android:orientation="vertical"
+    android:weightSum="5"
     >
 
   <!--linear layout might not work, recommend relativelayout or framelayout -->
@@ -14,75 +16,18 @@
         android:layout_height="match_parent" android:id="@+id/map1"
         tools:context="us.in_tune.in_tunex3.MainScreen"
         android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_weight="4"
         />
 
 
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="4"
-        android:background="#55000000"
-        android:layout_alignParentBottom="true"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="you are bad"
-                android:background="#00ff00ff"
-                />
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="you are bad 2"
-                />
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="you are bad 3"
-                />
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="you are bad 3"
-                />
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="you are bad 4"
-                />
+  <fragment
+      android:layout_width = "match_parent"
+      android:layout_height="80dp"
+      android:id="@+id/fragmentContainer"
+      android:name="us.in_tune.in_tunex3.MainHorizontalScrollerFragment"
+      android:layout_weight="1"
+      />
 
 
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-
-</RelativeLayout>
+</LinearLayout>

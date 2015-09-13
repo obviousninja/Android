@@ -30,6 +30,8 @@ public class MainScreen extends FragmentActivity {
 
         setUpMapIfNeeded();
 
+
+
     }
 
     @Override
