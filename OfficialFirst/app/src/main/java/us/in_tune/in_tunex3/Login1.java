@@ -127,15 +127,24 @@ public class Login1 extends AppCompatActivity {
             case 2:
                 //register account request call back
                 System.out.println("Here is the requestCode: " + requestCode + "Result Code: " + resultCode);
-                if(resultCode == 0){
-                    System.out.println("Success OMG HOOPIEE");
-                    Toast.makeText(currentContext, "Registered", Toast.LENGTH_LONG).show();
+                if(resultCode == -1) {
+                    System.out.println("MYResult_OK");
+                    Toast.makeText(currentContext, "MYRESULT_OK", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 0){
+                    System.out.println("MYActivityCanceled");
+                    Toast.makeText(currentContext, "Return", Toast.LENGTH_LONG).show();
                 }else if(resultCode == 1){
+                    System.out.println("RESULT_FIRST_USER");
+                    Toast.makeText(currentContext, "result_first_user", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 2){
+                    System.out.println("Success");
+                    Toast.makeText(currentContext, "Registered", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 3){
                     System.out.println("Failure OMG FAILURE");
                     Toast.makeText(currentContext, "Not Registered", Toast.LENGTH_LONG).show();
                 }else{
-                    System.out.println("Erorr! OMG ERROR!");
-                    //Toast.makeText(currentContext, "", Toast.LENGTH_LONG).show();
+                    System.out.println("Erorr! SERVER OMG ERROR!");
+                    Toast.makeText(currentContext, "", Toast.LENGTH_LONG).show();
                 }
 
 

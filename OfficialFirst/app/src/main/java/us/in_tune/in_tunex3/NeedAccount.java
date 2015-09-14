@@ -64,7 +64,7 @@ public class NeedAccount extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-           return;
+
         }
 
         //returns null if the output is invalid, otherwise return a string
@@ -142,20 +142,19 @@ public class NeedAccount extends AppCompatActivity {
 
             int retInt = new Integer(result);
 
-            setResult(retInt);
-            if(retInt != 0){
+
+            if(retInt == 3){
                 Toast.makeText(mContext, "Account Already Exist", Toast.LENGTH_LONG).show();
                 EditText emailEText = (EditText) findViewById(R.id.registerEmail);
                 EditText passEText = (EditText) findViewById(R.id.registerPassword);
 
                 emailEText.setText("");
                 passEText.setText("");
-
-            }else{
-                setResult(retInt);
-                finish();
+                return;
             }
 
+            setResult(retInt);
+            finish();
 
         }
 
