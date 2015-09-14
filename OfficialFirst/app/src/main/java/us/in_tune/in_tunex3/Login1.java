@@ -152,7 +152,8 @@ public class Login1 extends AppCompatActivity {
             case 3:
 
 
-                //normal sign in request call back
+                //normal sign in request call back, there is no sign in call back, once you signed in
+                //that's it
                 break;
             case 4:
                 //facebook login request call back
@@ -190,7 +191,7 @@ public class Login1 extends AppCompatActivity {
 
         private String usernameParam,passwordParam;
         private final String url = "http://in-tune.us/loginCheck.php";
-        Intent mainIntent = new Intent(currentContext, MainScreen.class);
+        private Intent mainIntent = new Intent(currentContext, MainScreen.class);
 
 
         @Override
@@ -224,7 +225,7 @@ public class Login1 extends AppCompatActivity {
                 }
 
                 //passing the param from login1
-                mainIntent.putExtra("anewkey", usernameParam);
+                mainIntent.putExtra("usernamekey", usernameParam);
 
 
                 URL request = new URL(url);

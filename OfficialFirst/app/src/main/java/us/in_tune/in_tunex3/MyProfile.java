@@ -19,6 +19,10 @@ Context mContext;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile); //correct code, temporarily offline
 
+        System.out.println("Spy is here: " + getIntent().getStringExtra("usernamekey1"));
+
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,7 +48,7 @@ Context mContext;
 
     private class SaveProfileTask extends AsyncTask<String, Integer, String> {
 
-        private final String url = "";
+        private final String url = "http://in-tune.us/setProfile.php";
 
         //returns null if result is invalid, otherwise, return null
         @Override

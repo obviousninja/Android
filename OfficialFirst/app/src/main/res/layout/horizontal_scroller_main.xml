@@ -24,6 +24,7 @@
                 android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
+                android:id="@+id/main_screen_mygarage"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -51,6 +52,7 @@
                 android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
+                android:id="@+id/main_screen_mybill"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -76,6 +78,7 @@
                 android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
+                android:id="@+id/main_screen_myprofile"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -101,31 +104,7 @@
                 android:weightSum="6"
                 android:minWidth="80dp"
                 android:clickable="true"
-                >
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/scheduleicon"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="12sp"
-                    android:text="Schedule\nAppointment"
-                    android:background="#00ff00ff"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="6"
-                android:minWidth="80dp"
-                android:clickable="true"
+                android:id="@+id/main_screen_pendingappt"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -149,6 +128,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:weightSum="5"
+                android:id="@+id/main_screen_myhistory"
                 android:clickable="true"
                 >
                 <ImageView

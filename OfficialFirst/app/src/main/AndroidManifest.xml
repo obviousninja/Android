@@ -39,6 +39,10 @@
         <activity android:name=".MainScreen"
             android:label="Main Screen"></activity>
 
+        <activity android:name=".MyProfile"
+            android:label="My Profile"
+            />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
