@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="5"
     android:background="@color/orangeRed"
     android:orientation="vertical"
     android:weightSum="5"
@@ -16,17 +15,17 @@
         android:layout_height="match_parent" android:id="@+id/map1"
         tools:context="us.in_tune.in_tunex3.MainScreen"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_weight="4"
+        android:layout_weight="1"
         />
 
 
 
   <fragment
       android:layout_width = "match_parent"
-      android:layout_height="80dp"
+      android:layout_height="match_parent"
       android:id="@+id/fragmentContainer"
       android:name="us.in_tune.in_tunex3.MainHorizontalScrollerFragment"
-      android:layout_weight="1"
+      android:layout_weight="4"
       />
 
 

@@ -23,12 +23,12 @@
                 android:orientation="vertical"
                 android:weightSum="5"
                 android:minWidth="80dp"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image1"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/garageicon"
                     android:layout_weight="1"
                     />
                 <TextView
@@ -37,6 +37,7 @@
                     android:textSize="12sp"
                     android:text="My Garage"
                     android:background="#00ff00ff"
+                    android:gravity="center"
                     android:layout_weight="4"
                     />
             </LinearLayout>
@@ -49,12 +50,12 @@
                 android:orientation="vertical"
                 android:weightSum="5"
                 android:minWidth="80dp"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image2"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/billicon"
                     android:layout_weight="1"
                     />
                 <TextView
@@ -64,6 +65,7 @@
                     android:text="My Bill"
                     android:background="#00ff00ff"
                     android:layout_weight="4"
+                    android:gravity="center"
                     />
             </LinearLayout>
 
@@ -73,12 +75,12 @@
                 android:orientation="vertical"
                 android:weightSum="5"
                 android:minWidth="80dp"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image1"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/profileicon"
                     android:layout_weight="1"
                     />
                 <TextView
@@ -88,6 +90,7 @@
                     android:text="My Profile"
                     android:background="#00ff00ff"
                     android:layout_weight="4"
+                    android:gravity="center"
                     />
             </LinearLayout>
 
@@ -97,12 +100,12 @@
                 android:orientation="vertical"
                 android:weightSum="6"
                 android:minWidth="80dp"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image1"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/scheduleicon"
                     android:layout_weight="2"
                     />
                 <TextView
@@ -112,6 +115,7 @@
                     android:text="Schedule\nAppointment"
                     android:background="#00ff00ff"
                     android:layout_weight="4"
+                    android:gravity="center"
                     />
             </LinearLayout>
 
@@ -121,12 +125,12 @@
                 android:orientation="vertical"
                 android:weightSum="6"
                 android:minWidth="80dp"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image1"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/pendingicon"
                     android:layout_weight="2"
                     />
                 <TextView
@@ -136,6 +140,7 @@
                     android:text="Pending\nAppointment"
                     android:background="#00ff00ff"
                     android:layout_weight="4"
+                    android:gravity="center"
                     />
             </LinearLayout>
 
@@ -144,12 +149,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:weightSum="5"
+                android:clickable="true"
                 >
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:text="image1"
-                    android:background="#00ff00ff"
+                    android:src="@drawable/historyicon"
                     android:layout_weight="1"
                     />
                 <TextView
@@ -159,6 +164,7 @@
                     android:text="My History"
                     android:background="#00ff00ff"
                     android:layout_weight="4"
+                    android:gravity="center"
                     />
             </LinearLayout>
 
