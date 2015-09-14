@@ -31,6 +31,8 @@ public class MainScreen extends FragmentActivity {
 
         setUpMapIfNeeded();
 
+        Intent intent = getIntent();
+        System.out.println("BLAH BLAH BLAH: " + intent.getStringExtra("anewkey"));
 
 
     }

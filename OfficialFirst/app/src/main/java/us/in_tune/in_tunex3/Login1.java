@@ -190,12 +190,21 @@ public class Login1 extends AppCompatActivity {
 
         private String usernameParam,passwordParam;
         private final String url = "http://in-tune.us/loginCheck.php";
+        Intent mainIntent = new Intent(currentContext, MainScreen.class);
 
+
+        @Override
+        protected void onPreExecute() {
+
+
+
+        }
         //returns null if result is valid, otherwise, return null
         @Override
         protected String doInBackground(String... params) {
 
             String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+
 
             //have to escape html from usernameparam and password param in order to foil the attackers
             //username param
@@ -214,8 +223,8 @@ public class Login1 extends AppCompatActivity {
                     return null;
                 }
 
-
-               // Toast.makeText(currentContext, usernameParam + " " + passwordParam, Toast.LENGTH_LONG );
+                //passing the param from login1
+                mainIntent.putExtra("anewkey", usernameParam);
 
 
                 URL request = new URL(url);
@@ -273,18 +282,17 @@ public class Login1 extends AppCompatActivity {
 
 
             int retInt = new Integer(result);
-            if(retInt == 0){
+            if(retInt == 2){
                 //correct username and password, so we should just start the next activity
                 //we may need to pass in some variables to the intent before the transmission
-                Intent mainIntent = new Intent(currentContext, MainScreen.class);
-
 
                 //pass variables here
+
 
                 //starting activity
                 startActivity(mainIntent);
 
-            }else if(retInt == 1){
+            }else if(retInt == 3){
                 //incorrect username and password
                 Toast.makeText(currentContext, "Invalid Username/Password", Toast.LENGTH_LONG).show();
             }else{
