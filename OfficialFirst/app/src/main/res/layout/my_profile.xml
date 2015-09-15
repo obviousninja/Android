@@ -134,6 +134,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/profilecancel"
+            android:clickable="true"
             >
 
             <TextView
@@ -142,9 +143,9 @@
                 android:layout_margin="1dp"
                 android:background="@color/deepOrange"
                 android:textColor="@color/lightYellow"
-                android:text="Cancel"
+                android:text="Back"
                 android:gravity="center"
-                android:clickable="true"
+
                 />
 
         </LinearLayout>
@@ -158,6 +159,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/profilesave"
+            android:clickable="true"
             >
 
             <TextView
@@ -168,7 +170,7 @@
                 android:textColor="@color/lightYellow"
                 android:text="Save"
                 android:gravity="center"
-                android:clickable="true"
+
 
                 />
 

@@ -281,6 +281,10 @@ public class Login1 extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
 
+            if(result == null){
+                Toast.makeText(currentContext, "Please Enter Username and Password", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             int retInt = new Integer(result);
             if(retInt == 2){
@@ -288,7 +292,16 @@ public class Login1 extends AppCompatActivity {
                 //we may need to pass in some variables to the intent before the transmission
 
                 //pass variables here
+                EditText usernamefield, passwordField;
 
+                usernamefield = (EditText) findViewById(R.id.usernameinput);
+
+
+
+                passwordField = (EditText) findViewById(R.id.passwordinput);
+
+                usernamefield.setText("");
+                passwordField.setText("");
 
                 //starting activity
                 startActivity(mainIntent);
