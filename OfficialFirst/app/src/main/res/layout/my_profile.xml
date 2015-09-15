@@ -125,6 +125,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height = "50dp"
+            android:background="@color/orange"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/profilecancel"
+            >
+
+            <TextView
+                android:layout_width="138dp"
+                android:layout_height="48dp"
+                android:layout_margin="1dp"
+                android:background="@color/deepOrange"
+                android:textColor="@color/lightYellow"
+                android:text="Cancel"
+                android:gravity="center"
+                android:clickable="true"
+                />
+
+        </LinearLayout>
+
         <LinearLayout
 
             android:layout_width="wrap_content"
@@ -133,6 +157,7 @@
             android:orientation="vertical"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:id="@+id/profilesave"
             >
 
             <TextView
@@ -148,6 +173,7 @@
                 />
 
         </LinearLayout>
+
 
 
     </RelativeLayout>
