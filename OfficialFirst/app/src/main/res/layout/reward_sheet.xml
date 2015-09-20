@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="6"
+    >
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:text="Dynamically Set From Database"
+    android:gravity="center"
+    />
 
     <HorizontalScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="4"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
         android:background="#55000000"
-        android:id="@+id/mainMapScrollerFragment"
         >
 
         <LinearLayout
@@ -14,84 +26,83 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             >
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="10"
+                android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
-                android:id="@+id/main_screen_mygarage"
+                android:id="@+id/reward_redeem_points"
                 >
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/garageicon"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="My Garage"
+                    android:text="Redeem Points"
                     android:background="#00ff00ff"
                     android:gravity="center"
-                    android:layout_weight="7"
+                    android:layout_weight="3"
                     />
             </LinearLayout>
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="10"
+                android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
-                android:id="@+id/main_screen_mybill"
+                android:id="@+id/reward_sell_current"
                 >
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/billicon"
-                    android:layout_weight="3"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="My Bill"
+                    android:text="Sell Current Car"
                     android:background="#00ff00ff"
-                    android:layout_weight="7"
                     android:gravity="center"
+                    android:layout_weight="3"
                     />
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="10"
+                android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
-                android:id="@+id/main_screen_myprofile"
+                android:id="@+id/reward_current_carhistory"
                 >
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/profileicon"
-                    android:layout_weight="3"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="My Profile"
+                    android:text="Current Car History"
                     android:background="#00ff00ff"
-                    android:layout_weight="7"
                     android:gravity="center"
+                    android:layout_weight="3"
                     />
             </LinearLayout>
 
@@ -99,25 +110,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="10"
+                android:weightSum="5"
                 android:minWidth="80dp"
                 android:clickable="true"
-                android:id="@+id/main_screen_pendingappt"
+                android:id="@+id/reward_current_note"
                 >
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/pendingicon"
-                    android:layout_weight="3"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="Pending\nAppointment"
+                    android:text="Current Car Notes"
                     android:background="#00ff00ff"
-                    android:layout_weight="7"
                     android:gravity="center"
+                    android:layout_weight="3"
                     />
             </LinearLayout>
 
@@ -125,29 +136,84 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="10"
-                android:id="@+id/main_screen_myhistory"
+                android:weightSum="5"
+                android:minWidth="80dp"
                 android:clickable="true"
+                android:id="@+id/reward_current_upload"
                 >
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/historyicon"
-                    android:layout_weight="3"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="Recent Service"
+                    android:text="Current Car Picture"
                     android:background="#00ff00ff"
-                    android:layout_weight="7"
                     android:gravity="center"
+                    android:layout_weight="3"
                     />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="5"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/reward_current_statistic"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Current Car Statistic"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="5"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/reward_mfgr"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Current Mfgr. Info"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 
+
+
     </HorizontalScrollView>
 
+</LinearLayout>
