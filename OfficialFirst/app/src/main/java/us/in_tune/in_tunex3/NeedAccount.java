@@ -75,8 +75,9 @@ public class NeedAccount extends AppCompatActivity {
 
             //process params
             emailString = Html.escapeHtml(params[0].toString()).toString();
-            passString = Html.escapeHtml(params[1].toString()).toString();
-            phoneString = Html.escapeHtml(params[2].toString()).toString();
+            phoneString = Html.escapeHtml(params[1].toString()).toString();
+            passString= Html.escapeHtml(params[2].toString()).toString();
+            System.out.println(emailString+ " " +passString + " " + phoneString);
 
             //checking params
             if(emailString == null || emailString.compareTo("")==0)
@@ -90,8 +91,8 @@ public class NeedAccount extends AppCompatActivity {
             try{
                 URL request = new URL(url);
                 //php params emailString, passString, phoneString
-                String query = String.format("emailString=%s&passString=%s&phoneString=%s", URLEncoder.encode(emailString, charset),
-                        URLEncoder.encode(passString, charset), URLEncoder.encode(phoneString, charset));
+                String query = String.format("emailString=%s&phoneString=%s&passString=%s", URLEncoder.encode(emailString, charset)
+                        , URLEncoder.encode(phoneString, charset),URLEncoder.encode(passString, charset));
 
                 //opening connection and set properties for post
                 HttpURLConnection conn = (HttpURLConnection) request.openConnection();
