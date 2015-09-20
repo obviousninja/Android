@@ -8,6 +8,13 @@
     >
 
   <!--linear layout might not work, recommend relativelayout or framelayout -->
+    <fragment
+        android:layout_width = "match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragmentContainer"
+        android:name="us.in_tune.in_tunex3.MainHorizontalScrollerFragment"
+        android:layout_weight="4"
+        />
 
     <fragment
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,13 +27,7 @@
 
 
 
-  <fragment
-      android:layout_width = "match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/fragmentContainer"
-      android:name="us.in_tune.in_tunex3.MainHorizontalScrollerFragment"
-      android:layout_weight="4"
-      />
+
 
 
 </LinearLayout>

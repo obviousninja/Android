@@ -7,14 +7,12 @@
         android:layout_weight="4"
         android:background="#55000000"
         android:id="@+id/mainMapScrollerFragment"
-
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-
             >
 
             <LinearLayout

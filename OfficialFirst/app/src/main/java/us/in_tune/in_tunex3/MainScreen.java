@@ -60,6 +60,7 @@ public class MainScreen extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 //do something
+
             }
         });
 
