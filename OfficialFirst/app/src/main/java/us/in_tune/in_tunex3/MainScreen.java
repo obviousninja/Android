@@ -3,9 +3,7 @@ package us.in_tune.in_tunex3;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,15 +18,38 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+
 
 /**
  * Created by Randy on 8/29/2015.
  */
 public class MainScreen extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener  {
 
+    private final String TAG = "MAIN_SCREEN_ALTERNATIVE";
+
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleApiClient mGoogleApiClient;
     Context mContext;
+
+    //location variables
+    private static final long ONE_MIN = 1000 * 60;
+    private static final long TWO_MIN = ONE_MIN * 2;
+    private static final long FIVE_MIN = ONE_MIN * 5;
+    private static final long MEASURE_TIME = 1000 * 30;
+    private static final long POLLING_FREQ = 1000 * 10;
+    private static final float MIN_ACCURACY = 25.0f;
+    private static final float MIN_LAST_READ_ACCURACY = 500.0f;
+    private static final float MIN_DISTANCE = 10.0f;
+
+    // Current best location estimate
+    private Location mBestReading;
+
+    // Reference to the LocationManager and LocationListener
+    private LocationManager mLocationManager;
+    private LocationListener mLocationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

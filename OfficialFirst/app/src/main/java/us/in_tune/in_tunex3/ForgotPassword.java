@@ -161,6 +161,17 @@ public class ForgotPassword extends AppCompatActivity {
                 }else if(resultInt == 3){
                     //email doesn't exist
                     Toast.makeText(mContext, "User/Answer Incorrect", Toast.LENGTH_LONG).show();
+                    View hiddenView = findViewById(R.id.reset_hiddenlayout);
+                    hiddenView.setVisibility(View.GONE);
+
+                    EditText questionView = (EditText) findViewById(R.id.reset_answer);
+                    questionView.setHint("Hint Cleared");
+                    questionView.setText("");
+
+                    EditText emailView = (EditText) findViewById(R.id.reset_emailinput);
+                    emailView.setEnabled(true);
+                    emailView.setFocusable(true);
+                    emailView.setText("");
                 }else if(resultInt == 4){
                     //error
                     Toast.makeText(mContext, "Please Input Email/Answer", Toast.LENGTH_LONG).show();
