@@ -5,3 +5,5 @@ I have only implemented some basic checks for edittextboxes.
 
 All animations and click behaviors are yet to be implemented.
 //TODO fully implement animations and click behaviors
+
+//TODO make a layout on network connectivity, check network connectivity on every layout
