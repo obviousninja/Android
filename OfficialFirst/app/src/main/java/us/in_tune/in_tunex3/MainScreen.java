@@ -1,59 +1,77 @@
 package us.in_tune.in_tunex3;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationListener;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.PlaceDetectionApi;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Randy on 8/29/2015.
  */
+
+//Google Place Web Server API Key: AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
+
 public class MainScreen extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener  {
 
     private final String TAG = "MAIN_SCREEN_ALTERNATIVE";
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleApiClient mGoogleApiClient;
-    Context mContext;
-
-    //location variables
-    private static final long ONE_MIN = 1000 * 60;
-    private static final long TWO_MIN = ONE_MIN * 2;
-    private static final long FIVE_MIN = ONE_MIN * 5;
-    private static final long MEASURE_TIME = 1000 * 30;
-    private static final long POLLING_FREQ = 1000 * 10;
-    private static final float MIN_ACCURACY = 25.0f;
-    private static final float MIN_LAST_READ_ACCURACY = 500.0f;
-    private static final float MIN_DISTANCE = 10.0f;
-
-    // Current best location estimate
-    private Location mBestReading;
-
-    // Reference to the LocationManager and LocationListener
-    private LocationManager mLocationManager;
-    private LocationListener mLocationListener;
+    private Context mContext;
+    private static final String ServerAPIKEY = "AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //checking network, if it is connected or not.
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnected();
+        if(isConnected) {
+
+            setContentView(R.layout.main_sheet_alternative);
+        }else{
+            //TODO FLOOD THIS WITH ANOTHER LAYOUT THAT DOESN"T REQURIE NETWORK CONNECTION
+            setContentView(R.layout.no_network_connected);
+        }
+
+        //TODO flood the main_screen_alternative layout with a search bar that includes
+        //address bar, radius bar, and search button
+
         //adding the Google Place API
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
@@ -63,11 +81,7 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
                 .addOnConnectionFailedListener(this)
                 .build();
 
-
-        setContentView(R.layout.main_sheet_alternative);
         setUpMapIfNeeded();
-
-
 
         //get the goodie username from the previous starting activity
         Intent intent = getIntent();
@@ -126,7 +140,92 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
             }
         });
 
+        //everything is populated, now we add the markers
+        //TODO Execute Order66
+        new GetCurrentLocationTask().execute();
 
+
+
+    }
+
+    //THIS IS ORDER 66
+    //Order 66 finds the current latitute and longitude and place marker on the current latitute and longitude
+    //it then finds the surrounding autoshops in X mile radius and place marker on them too
+    private class GetCurrentLocationTask extends AsyncTask<Void, Integer, Location>{
+        Location curLocation;
+        // Reference to the LocationManager
+        private LocationManager mLocationManager;
+        LocationListener locationListener;
+
+        @Override
+        protected void onPreExecute() {
+
+            //getting current location
+            mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            // Define a listener that responds to location updates
+
+            locationListener = new LocationListener() {
+                public void onLocationChanged(Location location) {
+                    // Called when a new location is found by the network location provider.
+                    curLocation = location;
+                }
+
+                public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+                public void onProviderEnabled(String provider) {}
+
+                public void onProviderDisabled(String provider) {}
+            };
+
+
+           //mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+
+        }
+
+
+        //derive latitude and longitude
+        //returns a location reading, returns null on error
+        @Override
+        protected Location doInBackground(Void... params) {
+
+            //we wait until we get a read on the location, then we remove the location listener
+        try{
+         while(curLocation == null){
+             Thread.currentThread().sleep(333);
+         }
+            //unregister the listener so there can be no more updates
+            mLocationManager.removeUpdates(locationListener);
+            return curLocation;
+
+        }catch(InterruptedException e){
+            //do nothing and pass the responsibility to outerscope
+        }
+
+
+            return null;
+        }
+
+        //set marker on the google map
+        @Override
+        protected void onPostExecute(Location result){
+
+            if(result == null){
+                return;
+            }
+
+           //add the marker to the position
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(result.getLatitude(), result.getLongitude()))
+                    .title("You"));
+
+            //Adjust camera position
+            CameraPosition pos = new CameraPosition(new LatLng(result.getLatitude(), result.getLongitude()), 14, 45, 0 );
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(pos));
+
+
+        }
     }
 
     @Override
@@ -203,7 +302,7 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 
     @Override
