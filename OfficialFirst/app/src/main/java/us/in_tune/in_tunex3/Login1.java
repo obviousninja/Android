@@ -2,23 +2,21 @@ package us.in_tune.in_tunex3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -90,8 +88,14 @@ public class Login1 extends AppCompatActivity {
 
                 Toast.makeText(currentContext, "Connecting to Server...", Toast.LENGTH_SHORT).show();
 
-                new HttpTaskSignIn().execute(newString);
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+
+                    new HttpTaskSignIn().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, newString);
+                }else{
+
+                    new HttpTaskSignIn().execute(newString);
+                }
 
                 //things that starts the main screen activity if it passes the checks
                // startActivityForResult(new Intent(getApplicationContext(), MainScreen.class), signinRequest);
@@ -180,9 +184,9 @@ public class Login1 extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -192,7 +196,6 @@ public class Login1 extends AppCompatActivity {
         private String usernameParam,passwordParam;
         private final String url = "http://in-tune.us/loginCheck.php";
         private Intent mainIntent = new Intent(currentContext, MainScreen.class);
-
 
         @Override
         protected void onPreExecute() {
@@ -213,6 +216,7 @@ public class Login1 extends AppCompatActivity {
           //  System.out.println("i got here");
 
             try{
+
                 usernameParam = Html.escapeHtml(params[0].toString()).toString();
                 passwordParam = Html.escapeHtml(params[1].toString()).toString();
                 //System.out.println("interior: " + params[0] + " " + params[1]);
@@ -257,7 +261,10 @@ public class Login1 extends AppCompatActivity {
                 //so account registration must be implemented before you can test if valid input is properly implemented
 
                 System.out.println(newString);
-
+                input.close(); //close any persistent resources so asyncthread would close down
+                newReader.close();
+                output.close();
+                conn.disconnect();
                 return newString;
             }catch(MalformedURLException e){
                 //returns right away, because if the url is wrong, then there is really nothing to do
@@ -280,6 +287,8 @@ public class Login1 extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result){
+
+
 
             if(result == null){
                 Toast.makeText(currentContext, "Please Enter Username and Password", Toast.LENGTH_LONG).show();

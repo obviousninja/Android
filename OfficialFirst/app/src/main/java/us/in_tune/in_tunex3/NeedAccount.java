@@ -1,6 +1,7 @@
 package us.in_tune.in_tunex3;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -50,7 +51,13 @@ public class NeedAccount extends AppCompatActivity {
                 exPhone = phoneEText.getText().toString();
 
 
-                new CreateAccountTask().execute(exEmail,exPhone,exPassword);
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+                    new CreateAccountTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, exEmail,exPhone,exPassword);
+                }else{
+                    new CreateAccountTask().execute(exEmail,exPhone,exPassword);
+                }
             }
         });
 
@@ -89,6 +96,9 @@ public class NeedAccount extends AppCompatActivity {
 
             //initiate connection
             try{
+
+
+
                 URL request = new URL(url);
                 //php params emailString, passString, phoneString
                 String query = String.format("emailString=%s&phoneString=%s&passString=%s", URLEncoder.encode(emailString, charset)
@@ -117,7 +127,10 @@ public class NeedAccount extends AppCompatActivity {
 
                 System.out.println(newString);
 
-
+                newReader.close();
+                input.close();
+                output.close();
+                conn.disconnect();
                 return newString;
 
             }catch(MalformedURLException e){
@@ -140,6 +153,7 @@ public class NeedAccount extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+
 
             int retInt = new Integer(result);
 
@@ -176,10 +190,10 @@ public class NeedAccount extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
         }
-
+*/
         return super.onOptionsItemSelected(item);
     }
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -66,8 +67,15 @@ public class MyProfile extends Activity {
                 prof_string_firstname = set_prof_firstname.getText().toString();
                 prof_string_lastname = set_prof_lastname.getText().toString();
 
+
+                System.out.println("got here save prof");
                 //execute the order 66
-                new SaveProfileTask().execute(getIntent().getStringExtra("usernamekey1"), prof_string_secretQuestion, prof_string_secretAnswer, prof_string_firstname, prof_string_lastname);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+                    new SaveProfileTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getIntent().getStringExtra("usernamekey1"), prof_string_secretQuestion, prof_string_secretAnswer, prof_string_firstname, prof_string_lastname);
+                }else{
+                    new SaveProfileTask().execute(getIntent().getStringExtra("usernamekey1"), prof_string_secretQuestion, prof_string_secretAnswer, prof_string_firstname, prof_string_lastname);
+                }
 
             }
         });
@@ -88,9 +96,9 @@ public class MyProfile extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -100,6 +108,7 @@ public class MyProfile extends Activity {
         private String task_email, task_secretQuestion, task_secretAnswer, task_firstname, task_lastname;
         private final String url = "http://in-tune.us/setProfile.php";
 
+
         //returns null if result is invalid, otherwise, return null
         @Override
         protected String doInBackground(String... params) {
@@ -107,6 +116,7 @@ public class MyProfile extends Activity {
 
 
             try{
+
 
               task_email=  Html.escapeHtml(params[0].toString()).toString();
                 task_secretQuestion = Html.escapeHtml(params[1].toString()).toString();
@@ -172,11 +182,18 @@ public class MyProfile extends Activity {
 
                 System.out.println(newString);
 
+                //free up resources
+                newReader.close();
+                input.close();
+                output.close();
+                conn.disconnect();
+
                 return newString;
 
 
 
             }catch(Exception e){
+                System.out.println("Exceptioned e");
                 e.printStackTrace();
             }
 

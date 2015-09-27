@@ -1,24 +1,19 @@
 package us.in_tune.in_tunex3;
 
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.PlaceDetectionApi;
-import com.google.android.gms.location.places.Places;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -31,10 +26,14 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Iterator;
-import java.util.List;
+import us.in_tune.in_tunex3.GeoLibrary;
 
 /**
  * Created by Randy on 8/29/2015.
@@ -44,10 +43,18 @@ import java.util.List;
 
 public class MainScreen extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener  {
 
+    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.909567,-77.028816&radius=8046.72&types=car_repair&sensor=true&key=AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
+    // Ask Query by Distance in Meters
+
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.909567,-77.028816&rankby=distance&types=car_repair&sensor=true&key=AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
+    // Ask Query By having the google return the rank base on distance CANNOT SPECIFY DISTANCE
+
+   // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
+    //android geo-coding data
+
     private final String TAG = "MAIN_SCREEN_ALTERNATIVE";
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private GoogleApiClient mGoogleApiClient;
     private Context mContext;
     private static final String ServerAPIKEY = "AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U";
 
@@ -69,17 +76,22 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
             setContentView(R.layout.no_network_connected);
         }
 
+        // Get a reference to the Spinner
+        final Spinner spinner = (Spinner) findViewById(R.id.main_search_spinner);
+
+        // Create an Adapter that holds a list of colors
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.radius, R.layout.search_bar_dropdown);
+
+        spinner.setAdapter(adapter);
+        spinner.setSelection(2);
+        spinner.setSelected(true);
+
+
+
         //TODO flood the main_screen_alternative layout with a search bar that includes
         //address bar, radius bar, and search button
 
-        //adding the Google Place API
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
 
         setUpMapIfNeeded();
 
@@ -91,6 +103,13 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
         /*Intent intent = getIntent();
         System.out.println("BLAH BLAH BLAH: " + intent.getStringExtra("usernamekey"));*/
 
+        //check if location service is enabled, if not prompt user to enable it
+        LocationManager newManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if(newManager.isProviderEnabled(LocationManager.GPS_PROVIDER) == false){
+            Toast.makeText(getApplicationContext(), "Please Turn on Location Service!", Toast.LENGTH_LONG).show();
+            Intent requestLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(requestLocationIntent);
+        }
 
         View profileClick = findViewById(R.id.main_screen_myprofile);
         profileClick.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +131,10 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
             @Override
             public void onClick(View v) {
                 //do something
+                Intent garageIntent = new Intent(mContext, Garage.class);
+                garageIntent.putExtra("usernamekey1", validatedUsername);
 
+                startActivity(garageIntent);
             }
         });
 
@@ -120,6 +142,7 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
         billClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //has to retrieve items from the SQL server
 
             }
         });
@@ -128,7 +151,7 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
         pendingapptClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //has to retrieve items from the SQL server
             }
         });
 
@@ -136,13 +159,69 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
         myhistoryClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //has to retrieve items from the SQL server
 
             }
         });
 
+        Button searchButton = (Button) findViewById(R.id.main_search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //get address
+                EditText addressText = (EditText) findViewById(R.id.main_address);
+                final String currentAddressText = addressText.getText().toString();
+                if(currentAddressText.isEmpty() || currentAddressText == null){
+                    Toast.makeText(mContext, "Please Enter A Valid Address", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //get item from spinner
+                String spinnerSelectionText = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+
+                //output both the current address text and spinner text for debugging purpose
+                System.out.println("Address: " + currentAddressText + "Radius" + spinnerSelectionText);
+
+
+                //convert miles to meters
+                final Double radiusInMeter = 1609.34*(Integer.parseInt(spinnerSelectionText));
+                System.out.print("Mile to Meter: " + radiusInMeter);
+
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).execute();
+
+                        //find geolocation first
+                        //not using threadpoolexecutor ... because i got bored of using it
+                        new GetLatLngByAddress(mContext, (new GeoLibrary().geocodeAddress(currentAddressText)), mMap, radiusInMeter).execute();
+
+
+
+                    }
+                });
+                /*
+
+                 */
+            }
+        });
+
+
+
+
         //everything is populated, now we add the markers
         //TODO Execute Order66
-        new GetCurrentLocationTask().execute();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+
+            new GetCurrentLocationTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }else{
+            new GetCurrentLocationTask().execute();
+        }
+        //TODO support the search bar function here
 
 
 
@@ -192,6 +271,9 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
 
             //we wait until we get a read on the location, then we remove the location listener
         try{
+
+
+
          while(curLocation == null){
              Thread.currentThread().sleep(333);
          }
@@ -223,6 +305,19 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
             //Adjust camera position
             CameraPosition pos = new CameraPosition(new LatLng(result.getLatitude(), result.getLongitude()), 14, 45, 0 );
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(pos));
+            //plots all auto repair shops around the current location
+
+
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+
+                new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            }else{
+
+                new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).execute();
+            }
 
 
         }
@@ -252,12 +347,12 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+
     }
 
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
+
         super.onStop();
     }
 
@@ -325,11 +420,14 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
 }

@@ -35,7 +35,9 @@
             android:label="Need Account"
             />
 
-
+        <activity android:name=".Garage"
+            android:label="My Garage"
+            />
 
         <activity android:name=".MainScreen"
             android:label="Main Screen"></activity>

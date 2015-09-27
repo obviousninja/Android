@@ -2,21 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orangeRed"
+    android:background="@color/transparentOrange"
     android:orientation="vertical"
     android:weightSum="5"
     >
 
   <!--linear layout might not work, recommend relativelayout or framelayout -->
 
-    <fragment
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/map1"
-        tools:context="us.in_tune.in_tunex3.MainScreen"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        />
+        >
+        <fragment
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/map1"
+            tools:context="us.in_tune.in_tunex3.MainScreen"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            />
+
+        <fragment
+            android:layout_width="331dp"
+            android:layout_height="50dp"
+            android:id="@+id/searchFrag"
+            android:name="us.in_tune.in_tunex3.MainSearchBarFragment"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="48dp"
+            />
+
+    </RelativeLayout>
+
+
 
 
     <fragment

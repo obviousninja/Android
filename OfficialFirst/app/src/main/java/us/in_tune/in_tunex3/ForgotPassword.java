@@ -4,8 +4,8 @@ package us.in_tune.in_tunex3;
  * Created by Randy on 8/25/2015.
  */
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -60,7 +60,15 @@ public class ForgotPassword extends AppCompatActivity {
 
 
                     //TODO receive the json object that contains both secretquestion and secretanswer
-                    new ResetTask().execute(reset_emailString, reset_answerString); //at first round, reset_answerstring will be null
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+
+                        new ResetTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, reset_emailString, reset_answerString);
+                    }else{
+
+                        new ResetTask().execute(reset_emailString, reset_answerString); //at first round, reset_answerstring will be null
+                    }
+
                 }
 
 
@@ -77,7 +85,11 @@ public class ForgotPassword extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             try{
+
+
                 String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+
+
 
                 loginName = Html.escapeHtml(params[0]);
                 reset_answer = Html.escapeHtml(params[1]);
@@ -113,13 +125,16 @@ public class ForgotPassword extends AppCompatActivity {
 
 
 
-
-
+                    //free up resources
+                    input.close();
+                    newReader.close();
+                    conn.disconnect();
+                    output.close();
 
                     return newString;
 
             }catch (Exception e){
-                System.out.println("exceptioned");
+                System.out.println("Interrupted Exception");
             }
 
 
@@ -160,7 +175,7 @@ public class ForgotPassword extends AppCompatActivity {
 
                 }else if(resultInt == 3){
                     //email doesn't exist
-                    Toast.makeText(mContext, "User/Answer Incorrect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Error, Invalid Username or Profile Not Set", Toast.LENGTH_LONG).show();
                     View hiddenView = findViewById(R.id.reset_hiddenlayout);
                     hiddenView.setVisibility(View.GONE);
 
@@ -239,9 +254,9 @@ public class ForgotPassword extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+      /*  if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

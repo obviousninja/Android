@@ -1,6 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Login1">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/actionbar_intune_tutorial" android:title="In-Tune Tutorial"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_manage_my_cars" android:title="Manage My Cars"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_myhistory" android:title="My History"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_pending_request" android:title="Pending Requests"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_my_friends" android:title="My Friends"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_my_reward" android:title="My Rewards/Credits"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/actionbar_about_intune" android:title="About In-Tune"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+
 </menu>

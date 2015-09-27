@@ -9,11 +9,41 @@
         android:id="@+id/mainMapScrollerFragment"
         >
 
+    <!--
+    marker info window cannot be used interactively, google said so...
+    Hence, we need to figure out a way for schedule appointment to work
+    -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/main_screen_scheduleappt"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Schedule Appointment"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="7"
+                    />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
