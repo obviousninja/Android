@@ -184,9 +184,11 @@ public class Login1 extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
+       if (id == R.id.actionbar_my_reward) {
+            Intent rewardIntent = new Intent(getApplicationContext(),MyReward.class);
+           startActivity(rewardIntent);
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -43,6 +43,12 @@ import us.in_tune.in_tunex3.GeoLibrary;
 
 public class MainScreen extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener  {
 
+    /*
+      // Google Places serach url's
+https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
+
+     */
+
     //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.909567,-77.028816&radius=8046.72&types=car_repair&sensor=true&key=AIzaSyCURSD_AriIM3vGRqkYok3J9EJ0oszjG0U
     // Ask Query by Distance in Meters
 
@@ -94,6 +100,9 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
 
 
         setUpMapIfNeeded();
+
+
+
 
         //get the goodie username from the previous starting activity
         Intent intent = getIntent();
@@ -212,6 +221,7 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
 
 
 
+
         //everything is populated, now we add the markers
         //TODO Execute Order66
 
@@ -308,8 +318,6 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
             //plots all auto repair shops around the current location
 
 
-
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 
                 new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -398,6 +406,8 @@ public class MainScreen extends AppCompatActivity implements ConnectionCallbacks
      */
     private void setUpMap() {
         //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //set custom info window
+        mMap.setInfoWindowAdapter(new InTuneInfoWindow(getLayoutInflater()));
     }
 
     @Override

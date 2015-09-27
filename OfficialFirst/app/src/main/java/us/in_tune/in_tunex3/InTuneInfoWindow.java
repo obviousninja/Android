@@ -25,6 +25,6 @@ public class InTuneInfoWindow implements GoogleMap.InfoWindowAdapter {
 
     @Override
     public View getInfoContents(Marker marker) {
-        return null;
+        return info_window_content_view;
     }
 }
