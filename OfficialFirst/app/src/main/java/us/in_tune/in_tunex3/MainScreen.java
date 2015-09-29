@@ -101,9 +101,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
 
         setUpMapIfNeeded();
 
-
-
-
+        System.out.println("i got here");
         //get the goodie username from the previous starting activity
         Intent intent = getIntent();
         final String validatedUsername = intent.getStringExtra("usernamekey");
@@ -249,6 +247,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
         @Override
         protected void onPreExecute() {
 
+            System.out.println("pre execute phase");
             //getting current location
             mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             // Define a listener that responds to location updates
@@ -256,6 +255,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
             locationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
                     // Called when a new location is found by the network location provider.
+                    System.out.println("location updated");
                     curLocation = location;
                 }
 
@@ -267,9 +267,8 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
             };
 
 
-           //mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
         }
 
@@ -306,6 +305,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
             if(result == null){
                 return;
             }
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@location e");
 
            //add the marker to the position
             mMap.addMarker(new MarkerOptions()
