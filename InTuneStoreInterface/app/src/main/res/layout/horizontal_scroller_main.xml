@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="4"
+        android:background="#55000000"
+        android:id="@+id/mainMapScrollerFragment"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/store_main_add_driver"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Add Driver"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="7"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/store_main_showall_drivers"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Show All Drivers"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="7"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/store_main_profile"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/profileicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Current Store Profile"
+                    android:background="#00ff00ff"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/store_main_all_works_today"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/pendingicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Today's Work"
+                    android:background="#00ff00ff"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:id="@+id/store_main_work_done_today"
+                android:clickable="true"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/historyicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Works Done"
+                    android:background="#00ff00ff"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
