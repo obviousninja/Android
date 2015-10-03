@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.lang.Integer;
 
@@ -87,7 +88,7 @@ public class ForgotPassword extends AppCompatActivity {
             try{
 
 
-                String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+                String charset = Charset.forName("UTF-8").name();
 
 
 

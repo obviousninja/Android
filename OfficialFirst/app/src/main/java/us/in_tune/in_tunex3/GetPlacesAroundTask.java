@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 
 /**
  * Created by Randy on 9/23/2015.
@@ -45,7 +46,7 @@ public class GetPlacesAroundTask extends AsyncTask<Location, LocationObjectAndRa
     @Override
     protected String doInBackground(Location... params) {
 
-        String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+        String charset = Charset.forName("UTF-8").name();
 
         try{
             String requestString = url;

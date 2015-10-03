@@ -21,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 
 /**
  * Created by Randy on 8/29/2015.
@@ -78,7 +79,7 @@ public class NeedAccount extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+            String charset = Charset.forName("UTF-8").name();
 
             //process params
             emailString = Html.escapeHtml(params[0].toString()).toString();

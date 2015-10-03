@@ -28,8 +28,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapsActivity"
-            android:label="Main"/>
 
         <activity android:name=".StoreSignUp"
             android:label="Store Sign Up"/>

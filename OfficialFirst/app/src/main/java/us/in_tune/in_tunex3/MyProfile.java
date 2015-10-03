@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 
 /**
  * Created by Randy on 9/14/2015.
@@ -112,7 +113,7 @@ public class MyProfile extends Activity {
         //returns null if result is invalid, otherwise, return null
         @Override
         protected String doInBackground(String... params) {
-            String charset = java.nio.charset.StandardCharsets.UTF_8.name();
+            String charset = Charset.forName("UTF-8").name();
 
 
             try{

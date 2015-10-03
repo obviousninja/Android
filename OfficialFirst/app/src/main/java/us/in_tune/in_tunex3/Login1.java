@@ -21,8 +21,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-
 import android.text.Html;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Login1 extends AppCompatActivity {
 
@@ -195,7 +197,7 @@ public class Login1 extends AppCompatActivity {
 
     private class HttpTaskSignIn extends AsyncTask<String, String, String > {
 
-        private String usernameParam,passwordParam;
+        private String usernameParam,passwordParam, typeParam;
         private final String url = "http://in-tune.us/loginCheck.php";
         private Intent mainIntent = new Intent(currentContext, MainScreen.class);
 
@@ -209,8 +211,8 @@ public class Login1 extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String charset = java.nio.charset.StandardCharsets.UTF_8.name();
-
+            //use this for below API level 19
+            String charset = Charset.forName("UTF-8").name();
 
             //have to escape html from usernameparam and password param in order to foil the attackers
             //username param
@@ -221,6 +223,8 @@ public class Login1 extends AppCompatActivity {
 
                 usernameParam = Html.escapeHtml(params[0].toString()).toString();
                 passwordParam = Html.escapeHtml(params[1].toString()).toString();
+                typeParam = "users";
+
                 //System.out.println("interior: " + params[0] + " " + params[1]);
                 //System.out.println("interior: " + usernameParam + " " + passwordParam);
                 if(usernameParam == null || usernameParam.compareTo("")==0){
@@ -235,7 +239,7 @@ public class Login1 extends AppCompatActivity {
 
 
                 URL request = new URL(url);
-                String query = String.format("loginInput=%s&passInput=%s", URLEncoder.encode(usernameParam, charset), URLEncoder.encode(passwordParam, charset));
+                String query = String.format("loginInput=%s&passInput=%s&type=%s", URLEncoder.encode(usernameParam, charset), URLEncoder.encode(passwordParam, charset), URLEncoder.encode(typeParam, charset));
 
 
                 //opening connection and set properties for post
