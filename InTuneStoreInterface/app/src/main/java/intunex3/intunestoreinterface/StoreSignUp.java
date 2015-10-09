@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 /**
@@ -29,35 +35,44 @@ public class StoreSignUp extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //todo perform registration action
 
-                        EditText usernameField, passwordField, addressField;
-                        usernameField = (EditText) findViewById(R.id.registerEmail);
-                        passwordField = (EditText) findViewById(R.id.registerPassword);
-                        addressField = (EditText) findViewById(R.id.registerCity);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //todo perform registration action
 
-                        String usernameString, passwordString, addrString;
-                        usernameString = usernameField.getText().toString();
-                        passwordString = passwordField.getText().toString();
-                        addrString = addressField.getText().toString();
+                                EditText usernameField, passwordField, addressField;
+                                usernameField = (EditText) findViewById(R.id.registerEmail);
+                                passwordField = (EditText) findViewById(R.id.registerPassword);
+                                addressField = (EditText) findViewById(R.id.registerCity);
 
-                        if(usernameString == null || usernameString.compareTo("") == 0 || passwordString== null || passwordString.compareTo("")== 0 || addrString == null || addrString.compareTo("") == 0){
-                            Toast.makeText(mContext, "All Fields Are Required", Toast.LENGTH_LONG).show();
-                            return;
-                        }
+                                String usernameString, passwordString, addrString;
+                                usernameString = usernameField.getText().toString();
+                                passwordString = passwordField.getText().toString();
+                                addrString = addressField.getText().toString();
 
-                        //execute the task
-                        AsyncTask newTask = new StoreSignUpTask().execute(usernameString, passwordString, addrString);
+                                if(usernameString == null || usernameString.compareTo("") == 0 || passwordString== null || passwordString.compareTo("")== 0 || addrString == null || addrString.compareTo("") == 0){
+                                    Toast.makeText(mContext, "All Fields Are Required", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                //execute the task
+                                new StoreSignUpTask().execute(usernameString, passwordString, addrString);
+
+
+                            }
+                        });
                     }
                 }
 
         );
     }
 
-    private class StoreSignUpTask extends AsyncTask<String, Integer, Integer>{
+    private class StoreSignUpTask extends AsyncTask<String, Integer, String>{
+
+        private final String url = "http://in-tune.us/register_store.php";
 
         @Override
-        protected Integer doInBackground(String... params) {
+        protected String doInBackground(String... params) {
 
             //use this for below API level 19
             String charset = Charset.forName("UTF-8").name();
@@ -72,6 +87,36 @@ public class StoreSignUp extends AppCompatActivity {
                 city = Html.escapeHtml(params[2]);
 
                 try{
+                    URL request = new URL(url);
+                    //php params loginName, loginPass, city
+                    String query = String.format("loginName=%s&loginPass=%s&city=%s", URLEncoder.encode(username, charset)
+                            , URLEncoder.encode(password, charset),URLEncoder.encode(city, charset));
+
+                    //opening connection and set properties for post
+                    HttpURLConnection conn = (HttpURLConnection) request.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Accept-Charset", charset);
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
+                    OutputStream output = conn.getOutputStream(); //get the output stream from the connection
+                    output.write(query.getBytes(charset));
+                    InputStream input = conn.getInputStream();
+                    InputStreamReader newReader = new InputStreamReader(input, charset);
+                    int newchar;
+                    String newString = new String();
+                    while((newchar =  newReader.read() ) != -1 ){
+
+                        newString = newString + (char)newchar;
+
+                    }
+
+                    System.out.println(newString);
+
+                    newReader.close();
+                    input.close();
+                    output.close();
+                    conn.disconnect();
+                    return newString;
+
 
                 }catch(Exception e){
 
@@ -91,23 +136,26 @@ public class StoreSignUp extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
+        protected void onPostExecute(String result) {
+
+            super.onPostExecute(result);
+            System.out.println("Result is: THIS: " + result);
+            int retInt = new Integer(result);
+            if(retInt == 3){
+                Toast.makeText(mContext, "Account Already Exist", Toast.LENGTH_LONG).show();
+                EditText emailEText = (EditText) findViewById(R.id.registerEmail);
+                EditText passEText = (EditText) findViewById(R.id.registerPassword);
+
+                emailEText.setText("");
+                passEText.setText("");
+                return;
+            }
+            setResult(retInt);
+            finish();
+
+
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
 
-        @Override
-        protected void onCancelled(Integer integer) {
-            super.onCancelled(integer);
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
     }
 }

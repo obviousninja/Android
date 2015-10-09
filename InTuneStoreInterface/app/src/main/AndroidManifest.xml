@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".StoreDriverSignUp"
+            android:label="Driver Sign Up"/>
 
         <activity android:name=".StoreSignUp"
             android:label="Store Sign Up"/>

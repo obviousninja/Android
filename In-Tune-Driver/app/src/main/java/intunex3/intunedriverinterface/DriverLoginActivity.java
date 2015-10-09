@@ -1,7 +1,9 @@
 package intunex3.intunedriverinterface;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import java.nio.charset.Charset;
 public class DriverLoginActivity extends AppCompatActivity {
 
     Context mContext;
+    SharedPreferences curPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class DriverLoginActivity extends AppCompatActivity {
         setContentView(R.layout.driver_login_activity);
         mContext = getApplicationContext();
 
-
+        curPreference = mContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         View signinButton = findViewById(R.id.signin);
 
@@ -38,26 +41,39 @@ public class DriverLoginActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //todo perform sign in action
 
-                        EditText username = (EditText) findViewById(R.id.usernameinput);
-                        EditText password = (EditText) findViewById(R.id.passwordinput);
 
-                        String usernameString = username.getText().toString();
-                        String passwordString = password.getText().toString();
 
-                        System.out.println("before the null check");
-                        System.out.println("usernameString: " + usernameString +"passwordString: "+ passwordString);
-                        //cannot have username or password empty
-                        if(usernameString == null || usernameString.compareTo("") == 0 || passwordString== null || passwordString.compareTo("")==0) {
-                            Toast.makeText(mContext, "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
-                            return;
-                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //todo perform sign in action
 
-                        System.out.println("after null check");
-                        System.out.println("usernameString: " + usernameString +"passwordString: "+ passwordString);
-                        //execute the signin action with params from the edittext box
-                        new HttpTaskSignIn().execute(usernameString, passwordString);
+                                EditText username = (EditText) findViewById(R.id.usernameinput);
+                                EditText password = (EditText) findViewById(R.id.passwordinput);
+
+                                String usernameString = username.getText().toString();
+                                String passwordString = password.getText().toString();
+
+                                System.out.println("before the null check");
+                                System.out.println("usernameString: " + usernameString +"passwordString: "+ passwordString);
+                                //cannot have username or password empty
+                                if(usernameString == null || usernameString.compareTo("") == 0 || passwordString== null || passwordString.compareTo("")==0) {
+                                    Toast.makeText(mContext, "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+
+                                System.out.println("after null check");
+                                System.out.println("usernameString: " + usernameString + "passwordString: " + passwordString);
+                                //execute the signin action with params from the edittext box
+                                Toast.makeText(mContext, "Connecting...", Toast.LENGTH_SHORT).show();
+
+                                new HttpTaskSignIn().execute(usernameString, passwordString);
+
+
+                            }
+                        });
+
 
                     }
                 }
@@ -189,8 +205,16 @@ public class DriverLoginActivity extends AppCompatActivity {
 
                 passwordField = (EditText) findViewById(R.id.passwordinput);
 
+                //saving user name via sharePreference
+                SharedPreferences.Editor curEdit = curPreference.edit();
+                curEdit.putString(getString(R.string.curusername),usernamefield.getText().toString());
+                curEdit.commit();
+
                 usernamefield.setText("");
                 passwordField.setText("");
+
+
+
 
                 //starting activity
                 startActivity(mainIntent);

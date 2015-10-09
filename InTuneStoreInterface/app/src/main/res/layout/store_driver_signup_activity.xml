@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orangeRed"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imageLogo"
+        android:src="@drawable/pawn1"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height = "20dp"
+        android:background="@color/orange"
+        android:layout_below="@id/imageLogo"
+        android:id="@+id/store_driver_create_account"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_margin="1dp"
+            android:background="@color/deepOrange"
+            android:text="Create Driver Account"
+            android:textColor="@color/lightYellow"
+            />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/store_driver_create_account"
+        android:id="@+id/store_driver_below_createaccounttag"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:id="@+id/store_driver_enter_drivername_layout"
+        android:layout_below="@id/store_driver_below_createaccounttag"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Driver Name"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_driver_register"
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/store_driver_enter_drivername_layout"
+        android:id="@+id/store_driver_below_drivername_space"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_below="@+id/store_driver_below_drivername_space"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/store_driver_password_layout"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Enter Password"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_driver_registerPassword"
+            />
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/space_after_city"
+        android:layout_below="@+id/store_driver_password_layout"
+        />
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height = "50dp"
+        android:background="@color/orange"
+        android:orientation="vertical"
+        android:layout_below="@+id/space_after_city"
+        android:layout_alignRight="@+id/store_driver_create_account"
+        >
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="48dp"
+            android:layout_margin="1dp"
+            android:background="@color/deepOrange"
+            android:textColor="@color/lightYellow"
+            android:text="Register"
+            android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/store_driver_registration"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height = "50dp"
+        android:background="@color/orange"
+        android:orientation="vertical"
+        android:layout_below="@+id/space_after_city"
+        android:layout_alignLeft="@+id/store_driver_create_account"
+        >
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="48dp"
+            android:layout_margin="1dp"
+            android:background="@color/deepOrange"
+            android:textColor="@color/lightYellow"
+            android:text="Cancel"
+            android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/store_driver_back"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

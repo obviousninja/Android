@@ -48,6 +48,32 @@
                 android:weightSum="10"
                 android:minWidth="80dp"
                 android:clickable="true"
+                android:id="@+id/store_main_add_item"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Add Service Item"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="7"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
                 android:id="@+id/store_main_showall_drivers"
                 >
                 <ImageView
@@ -61,6 +87,32 @@
                     android:layout_height="match_parent"
                     android:textSize="12sp"
                     android:text="Show All Drivers"
+                    android:background="#00ff00ff"
+                    android:gravity="center"
+                    android:layout_weight="7"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:minWidth="80dp"
+                android:clickable="true"
+                android:id="@+id/store_main_stop_show_driver"
+                >
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/garageicon"
+                    android:layout_weight="3"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="12sp"
+                    android:text="Stop Showing Drivers"
                     android:background="#00ff00ff"
                     android:gravity="center"
                     android:layout_weight="7"

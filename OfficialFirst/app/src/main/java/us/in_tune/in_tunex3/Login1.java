@@ -156,8 +156,6 @@ public class Login1 extends AppCompatActivity {
 
                 break;
             case 3:
-
-
                 //normal sign in request call back, there is no sign in call back, once you signed in
                 //that's it
                 break;

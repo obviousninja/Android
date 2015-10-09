@@ -2,6 +2,7 @@ package intunex3.intunestoreinterface;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,21 +41,29 @@ public class StoreLogin extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO Peformance sign in actions
-                        EditText username = (EditText) findViewById(R.id.usernameinput);
-                        EditText password = (EditText) findViewById(R.id.passwordinput);
 
-                        String usernameString = username.getText().toString();
-                        String passwordString = password.getText().toString();
 
-                        if(usernameString == null || usernameString.compareTo("") == 0 || passwordString== null || passwordString.compareTo("")==0) {
-                            Toast.makeText(mContext, "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
-                            return;
-                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //TODO Peformance sign in actions
+                                EditText username = (EditText) findViewById(R.id.usernameinput);
+                                EditText password = (EditText) findViewById(R.id.passwordinput);
 
+                                String usernameString = username.getText().toString();
+                                String passwordString = password.getText().toString();
+
+                                if (usernameString == null || usernameString.compareTo("") == 0 || passwordString == null || passwordString.compareTo("") == 0) {
+                                    Toast.makeText(mContext, "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                Toast.makeText(mContext, "Connecting...", Toast.LENGTH_SHORT).show();
+                                new HttpTaskSignIn().execute(usernameString, passwordString);
+                            }
+                        });
 
                         //execute task
-                        new HttpTaskSignIn().execute(usernameString, passwordString);
+
                     }
                 }
         );
@@ -75,6 +84,52 @@ public class StoreLogin extends AppCompatActivity {
 
         );
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode){
+            case 1:
+                //reset request call back
+                break;
+            case 2:
+                //register account request call back
+                System.out.println("Here is the requestCode: " + requestCode + "Result Code: " + resultCode);
+                if(resultCode == -1) {
+                    System.out.println("MYResult_OK");
+                    Toast.makeText(mContext, "MYRESULT_OK", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 0){
+                    System.out.println("MYActivityCanceled");
+                    Toast.makeText(mContext, "Return", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 1){
+                    System.out.println("RESULT_FIRST_USER");
+                    Toast.makeText(mContext, "result_first_user", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 2){
+                    System.out.println("Success");
+                    Toast.makeText(mContext, "Registered", Toast.LENGTH_LONG).show();
+                }else if(resultCode == 3){
+                    System.out.println("Failure OMG FAILURE");
+                    Toast.makeText(mContext, "Not Registered", Toast.LENGTH_LONG).show();
+                }else{
+                    System.out.println("Erorr! SERVER OMG ERROR!");
+                    Toast.makeText(mContext, "", Toast.LENGTH_LONG).show();
+                }
+
+
+                break;
+            case 3:
+                //normal sign in request call back, there is no sign in call back, once you signed in
+                //that's it
+                break;
+            case 4:
+                //facebook login request call back
+                break;
+            case 5:
+                //google + login request call back
+                break;
+            default:
+                break;
+        }
     }
 
     private class HttpTaskSignIn extends AsyncTask<String, String, String > {
@@ -193,9 +248,13 @@ public class StoreLogin extends AppCompatActivity {
 
                 usernamefield = (EditText) findViewById(R.id.usernameinput);
 
-
-
                 passwordField = (EditText) findViewById(R.id.passwordinput);
+
+                SharedPreferences newPref = mContext.getSharedPreferences(getString(R.string.sharefilename),Context.MODE_PRIVATE);
+                SharedPreferences.Editor newEdit = newPref.edit();
+                newEdit.putString("username", usernamefield.getText().toString());
+                newEdit.putString("password", passwordField.getText().toString());
+                newEdit.commit();
 
                 usernamefield.setText("");
                 passwordField.setText("");
