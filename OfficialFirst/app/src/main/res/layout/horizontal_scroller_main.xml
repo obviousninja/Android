@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="12sp"
-                    android:text="Schedule Appointment"
+                    android:text="Schedule Service"
                     android:background="#00ff00ff"
                     android:gravity="center"
                     android:layout_weight="7"

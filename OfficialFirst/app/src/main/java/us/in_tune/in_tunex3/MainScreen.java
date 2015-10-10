@@ -101,7 +101,6 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
 
         setUpMapIfNeeded();
 
-        System.out.println("i got here");
         //get the goodie username from the previous starting activity
         Intent intent = getIntent();
         final String validatedUsername = intent.getStringExtra("usernamekey");
@@ -117,6 +116,15 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
             Intent requestLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(requestLocationIntent);
         }
+
+        View scheduleAppt = findViewById(R.id.main_screen_scheduleappt);
+        scheduleAppt.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         View profileClick = findViewById(R.id.main_screen_myprofile);
         profileClick.setOnClickListener(new View.OnClickListener() {
@@ -315,17 +323,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
             //Adjust camera position
             CameraPosition pos = new CameraPosition(new LatLng(result.getLatitude(), result.getLongitude()), 14, 45, 0 );
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(pos));
-            //plots all auto repair shops around the current location
 
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-
-                new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-            }else{
-
-                new GetPlacesAroundTask(mContext, (new GeoLibrary()).latLngRankByDistance(result.getLatitude(), result.getLongitude()), mMap).execute();
-            }
 
 
         }
@@ -407,7 +405,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
     private void setUpMap() {
         //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         //set custom info window
-        mMap.setInfoWindowAdapter(new InTuneInfoWindow(getLayoutInflater()));
+        //mMap.setInfoWindowAdapter(new InTuneInfoWindow(getLayoutInflater()));
     }
 
     @Override
