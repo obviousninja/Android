@@ -2,6 +2,7 @@ package us.in_tune.in_tunex3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import java.net.URLEncoder;
 import android.text.Html;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 public class Login1 extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class Login1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login1); //correct code, temporarily offline
+        setContentView(R.layout.activity_login1);
 
 
         currentContext = getApplicationContext();
@@ -79,6 +79,8 @@ public class Login1 extends AppCompatActivity {
 
                 passwordField = (EditText) findViewById(R.id.passwordinput);
                 givenPassword = passwordField.getText().toString();
+
+                //TODO check username, it needs to be an email
 
 
                 String[] newString = {givenUserName, givenPassword};
@@ -261,8 +263,6 @@ public class Login1 extends AppCompatActivity {
 
                 }
 
-                //TODO valid answer ONLY happens if the database has the username and the password,
-                //so account registration must be implemented before you can test if valid input is properly implemented
 
                 System.out.println(newString);
                 input.close(); //close any persistent resources so asyncthread would close down
@@ -308,10 +308,15 @@ public class Login1 extends AppCompatActivity {
                 EditText usernamefield, passwordField;
 
                 usernamefield = (EditText) findViewById(R.id.usernameinput);
-
-
-
                 passwordField = (EditText) findViewById(R.id.passwordinput);
+
+                //putting items in share preference
+                SharedPreferences newPref = currentContext.getSharedPreferences(getString(R.string.share_pref_name),Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = newPref.edit();
+                editor.putString(getString(R.string.username), usernamefield.getText().toString());
+                editor.putString(getString(R.string.password), passwordField.getText().toString());
+                editor.commit();
+
 
                 usernamefield.setText("");
                 passwordField.setText("");

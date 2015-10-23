@@ -26,14 +26,11 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import us.in_tune.in_tunex3.GeoLibrary;
 
 /**
  * Created by Randy on 8/29/2015.
@@ -87,7 +84,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
 
         // Create an Adapter that holds a list of colors
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.radius, R.layout.search_bar_dropdown);
+                this, R.array.radius, R.layout.search_bar_spinner_dropdown);
 
         spinner.setAdapter(adapter);
         spinner.setSelection(2);
@@ -122,6 +119,9 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
 
             @Override
             public void onClick(View v) {
+
+                Intent scheduleIntent = new Intent(mContext, ScheduleServiceRecycleViewActivity.class);
+                startActivity(scheduleIntent);
 
             }
         });
@@ -199,7 +199,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsR
                 System.out.println("Address: " + currentAddressText + "Radius" + spinnerSelectionText);
 
 
-                //convert miles to meters
+                //convert miles to meters 1609.34 meter is one mile
                 final Double radiusInMeter = 1609.34*(Integer.parseInt(spinnerSelectionText));
                 System.out.print("Mile to Meter: " + radiusInMeter);
 

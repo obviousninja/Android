@@ -50,6 +50,7 @@
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
+            android:inputType="textEmailAddress"
             android:id="@+id/registerEmail"
             />
     </LinearLayout>
@@ -70,6 +71,7 @@
             android:hint="Enter Phone Number"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"
+            android:inputType="phone"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
             android:id="@+id/registerPhoneNumber"
@@ -90,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="Enter Password"
+            android:inputType="textPassword"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"

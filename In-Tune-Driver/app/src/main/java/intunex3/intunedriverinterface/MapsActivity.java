@@ -26,7 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-import java.sql.Time;
+
 
 public class MapsActivity extends FragmentActivity {
 
@@ -95,7 +95,6 @@ public class MapsActivity extends FragmentActivity {
                         //update the curlocation
                         curLocation = location;
                     }
-
 
                     //update the recordedTime to reflect the new instance
                     recordedTime = System.currentTimeMillis();

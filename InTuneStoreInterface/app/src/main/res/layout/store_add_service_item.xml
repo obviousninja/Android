@@ -6,7 +6,6 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     >
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -21,7 +20,7 @@
         android:layout_height = "20dp"
         android:background="@color/orange"
         android:layout_below="@id/imageLogo"
-        android:id="@+id/store_create_accounttag"
+        android:id="@+id/store_serviceitem_addtag"
         android:orientation="vertical"
         >
 
@@ -30,7 +29,7 @@
             android:layout_height="18dp"
             android:layout_margin="1dp"
             android:background="@color/deepOrange"
-            android:text="Create Account"
+            android:text="Add Service Item"
             android:textColor="@color/lightYellow"
             />
 
@@ -39,97 +38,95 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/store_create_accounttag"
-        android:id="@+id/store_below_createAccounttag"
+        android:layout_below="@+id/store_serviceitem_addtag"
+        android:id="@+id/servicespace1"
         />
 
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@color/orange"
-        android:id="@+id/store_enter_email_layout"
-        android:layout_below="@id/store_below_createAccounttag"
+        android:layout_below="@+id/servicespace1"
         android:layout_centerHorizontal="true"
+        android:id="@+id/store_add_service_item_service_name_layout"
         android:orientation="vertical"
         >
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Enter Email"
-            android:background="@color/orangeRed"
-            android:layout_margin="1dp"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/lightYellow"
-            android:gravity="center"
-            android:id="@+id/registerEmail"
-            />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/store_enter_email_layout"
-        android:id="@+id/store_below_email_space"
-        />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:layout_below="@+id/store_below_email_space"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/store_password_layout"
-        android:orientation="vertical"
-        >
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Enter Password"
-            android:background="@color/orangeRed"
-            android:layout_margin="1dp"
-            android:textColorHint="@color/lightYellow"
-            android:gravity="center"
-            android:inputType="textPassword"
-            android:id="@+id/registerPassword"
-            />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:id="@+id/space_below_password_layout"
-        android:layout_below="@+id/store_password_layout"
-        />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:layout_below="@+id/space_below_password_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/store_address_layout"
-        android:orientation="vertical"
-        >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Enter City"
+            android:hint="Service Name"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:gravity="center"
             android:inputType="text"
-            android:id="@+id/registerCity"
+            android:id="@+id/store_service_item_name"
             />
-
     </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:id="@+id/space_after_city"
-        android:layout_below="@+id/store_address_layout"
+        android:layout_below="@+id/store_add_service_item_service_name_layout"
+        android:id="@+id/servicespace2"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_below="@+id/servicespace2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/store_add_service_item_service_desc_layout"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Service Description"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:inputType="text"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_service_item_desc"
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/store_add_service_item_service_desc_layout"
+        android:id="@+id/servicespace3"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_below="@+id/servicespace3"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/store_add_service_item_service_price_layout"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Service Price"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:inputType="number"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_service_item_price"
+            />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/store_add_service_item_service_price_layout"
+        android:id="@+id/servicespace4"
         />
 
     <LinearLayout
@@ -138,8 +135,9 @@
         android:layout_height = "50dp"
         android:background="@color/orange"
         android:orientation="vertical"
-        android:layout_below="@+id/space_after_city"
-        android:layout_alignRight="@+id/store_create_accounttag"
+        android:layout_below="@+id/servicespace4"
+        android:layout_alignRight="@+id/store_add_service_item_service_price_layout"
+
         >
 
         <TextView
@@ -148,13 +146,35 @@
             android:layout_margin="1dp"
             android:background="@color/deepOrange"
             android:textColor="@color/lightYellow"
-            android:text="Register"
+            android:text="Next"
             android:gravity="center"
             android:clickable="true"
-            android:id="@+id/registration"
+            android:id="@+id/store_item_next"
             />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/orange"
+        android:layout_below="@+id/servicespace4"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/store_add_service_item_service_durationlayout"
+        android:layout_alignLeft="@+id/store_add_service_item_service_price_layout"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="138dp"
+            android:layout_height="48dp"
+            android:hint="Service Duration"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:inputType="number"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_add_service_item_service_duration"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

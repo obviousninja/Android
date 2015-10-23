@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:weightSum="4"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+<!--servicename, service option, service quanitity, service price-->
+<TextView
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/item_summary_service_name"
+    android:text="sample name"
+    android:gravity="center_vertical"
+    ></TextView>
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/item_summary_service_quantity"
+        android:gravity="center_vertical"
+        android:text="service quantity"
+        ></TextView>
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/item_summary_service_price"
+        android:gravity="center_vertical"
+        android:text="sample service price"
+        ></TextView>
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/item_summary_service_option"
+        android:text="sample service option"
+        android:gravity="center_vertical"
+        ></TextView>
+
+</LinearLayout>

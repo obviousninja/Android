@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import org.apache.commons.validator.EmailValidator;
 
 /**
  * Created by Randy on 8/29/2015.
@@ -52,6 +53,10 @@ public class NeedAccount extends AppCompatActivity {
                 exPhone = phoneEText.getText().toString();
 
 
+                if(EmailValidator.getInstance().isValid(exEmail) == false){
+                    Toast.makeText(mContext, "Please Enter A Valid Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){

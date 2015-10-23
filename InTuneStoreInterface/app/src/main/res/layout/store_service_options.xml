@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/orangeRed"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     >
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/imageLogo"
-        android:src="@drawable/pawn1"
-        android:layout_gravity="center"
-        />
 
     <LinearLayout
 
@@ -21,7 +14,7 @@
         android:layout_height = "20dp"
         android:background="@color/orange"
         android:layout_below="@id/imageLogo"
-        android:id="@+id/store_create_accounttag"
+        android:id="@+id/store_serviceoption_addtag"
         android:orientation="vertical"
         >
 
@@ -30,107 +23,57 @@
             android:layout_height="18dp"
             android:layout_margin="1dp"
             android:background="@color/deepOrange"
-            android:text="Create Account"
+            android:text="Add Service Option"
             android:textColor="@color/lightYellow"
             />
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@+id/store_create_accounttag"
-        android:id="@+id/store_below_createAccounttag"
-        />
-
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@color/orange"
-        android:id="@+id/store_enter_email_layout"
-        android:layout_below="@id/store_below_createAccounttag"
+        android:id="@+id/store_serviceoption_itemdescription_layout"
+        android:layout_below="@id/store_serviceoption_addtag"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         >
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Enter Email"
+            android:hint="Service Option"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/lightYellow"
-            android:gravity="center"
-            android:id="@+id/registerEmail"
-            />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/store_enter_email_layout"
-        android:id="@+id/store_below_email_space"
-        />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:layout_below="@+id/store_below_email_space"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/store_password_layout"
-        android:orientation="vertical"
-        >
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Enter Password"
-            android:background="@color/orangeRed"
-            android:layout_margin="1dp"
-            android:textColorHint="@color/lightYellow"
-            android:gravity="center"
-            android:inputType="textPassword"
-            android:id="@+id/registerPassword"
-            />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:id="@+id/space_below_password_layout"
-        android:layout_below="@+id/store_password_layout"
-        />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@color/orange"
-        android:layout_below="@+id/space_below_password_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/store_address_layout"
-        android:orientation="vertical"
-        >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Enter City"
-            android:background="@color/orangeRed"
-            android:layout_margin="1dp"
-            android:textColorHint="@color/lightYellow"
-            android:gravity="center"
             android:inputType="text"
-            android:id="@+id/registerCity"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:id="@+id/store_serviceoption_input"
             />
-
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:id="@+id/space_after_city"
-        android:layout_below="@+id/store_address_layout"
-        />
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/orange"
+        android:id="@+id/store_serviceoption_pricemultiplier_layout"
+        android:layout_below="@id/store_serviceoption_itemdescription_layout"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Cost How Much Extra?"
+            android:background="@color/orangeRed"
+            android:layout_margin="1dp"
+            android:textColorHint="@color/lightYellow"
+            android:gravity="center"
+            android:inputType="number"
+            android:id="@+id/store_serviceoption_pricemultiplier"
+            />
+    </LinearLayout>
 
     <LinearLayout
 
@@ -138,8 +81,9 @@
         android:layout_height = "50dp"
         android:background="@color/orange"
         android:orientation="vertical"
-        android:layout_below="@+id/space_after_city"
-        android:layout_alignRight="@+id/store_create_accounttag"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         >
 
         <TextView
@@ -148,13 +92,37 @@
             android:layout_margin="1dp"
             android:background="@color/deepOrange"
             android:textColor="@color/lightYellow"
-            android:text="Register"
+            android:text="Add"
             android:gravity="center"
             android:clickable="true"
-            android:id="@+id/registration"
+            android:id="@+id/store_service_option_item_add"
             />
 
     </LinearLayout>
 
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height = "50dp"
+        android:background="@color/orange"
+        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="48dp"
+            android:layout_margin="1dp"
+            android:background="@color/deepOrange"
+            android:textColor="@color/lightYellow"
+            android:text="Finish"
+            android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/add_service_item_finish"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -202,7 +202,6 @@ public class DriverLoginActivity extends AppCompatActivity {
                 usernamefield = (EditText) findViewById(R.id.usernameinput);
 
 
-
                 passwordField = (EditText) findViewById(R.id.passwordinput);
 
                 //saving user name via sharePreference

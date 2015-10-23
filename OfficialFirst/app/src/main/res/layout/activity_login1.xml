@@ -23,6 +23,7 @@ android:orientation="vertical"
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:inputType="textPassword"
             android:hint="Username"
             android:background="@color/orangeRed"
             android:layout_margin="1dp"

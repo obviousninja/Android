@@ -28,6 +28,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".StoreAddServiceItem"
+            android:label="Add Service Item"/>
+
+        <activity android:name=".StoreAddServiceOption"
+            android:label="Add Service Option"/>
+
         <activity android:name=".StoreDriverSignUp"
             android:label="Driver Sign Up"/>
 

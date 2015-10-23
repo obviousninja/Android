@@ -31,6 +31,7 @@
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:id="@+id/usernameinput"
+            android:inputType="text"
             android:gravity="center"
             />
 
@@ -60,6 +61,7 @@
             android:layout_margin="1dp"
             android:textColorHint="@color/lightYellow"
             android:id="@+id/passwordinput"
+            android:inputType="textPassword"
             android:gravity="center"
             />
 

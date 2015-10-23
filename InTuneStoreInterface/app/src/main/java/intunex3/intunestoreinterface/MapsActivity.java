@@ -54,6 +54,15 @@ public class MapsActivity extends AppCompatActivity {
         }
 
 
+        View addServiceItem = findViewById(R.id.store_main_add_item);
+        addServiceItem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent addServiceIntent = new Intent(mContext, StoreAddServiceItem.class);
+                startActivity(addServiceIntent);
+            }
+        });
 
         View addDriver = findViewById(R.id.store_main_add_driver);
         addDriver.setOnClickListener(  new View.OnClickListener() {

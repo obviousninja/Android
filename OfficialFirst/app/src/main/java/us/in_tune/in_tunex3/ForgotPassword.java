@@ -24,6 +24,7 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.lang.Integer;
+import org.apache.commons.validator.*;
 
 public class ForgotPassword extends AppCompatActivity {
 
@@ -52,13 +53,19 @@ public class ForgotPassword extends AppCompatActivity {
 
                 System.out.println("making sure it worksRESTANDRELAX: " + reset_emailString);
 
+
+
                 if(reset_emailString.compareTo("")==0 || reset_emailString==null){
                     Toast.makeText(mContext, "Email Cannot Be Empty", Toast.LENGTH_LONG).show();
                 }else{
                     //here email is not empty
                     //we send it to server for further processing
                     //if email matches an loginname, then we retrieve the secret question and use it, if not toast.email invalid
-
+                    //TODO check email ot be email
+                    if(EmailValidator.getInstance().isValid(reset_emailString) == false){
+                        Toast.makeText(mContext, "Please Enter A Valid Email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     //TODO receive the json object that contains both secretquestion and secretanswer
 

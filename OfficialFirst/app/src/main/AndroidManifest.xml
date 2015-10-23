@@ -30,6 +30,12 @@
         <activity android:name=".ForgotPassword"
             android:label="Forgot Password"/>
 
+        <activity android:name=".ScheduleServiceRecycleViewActivity"
+android:label="Schedule Service"/>
+
+        <activity android:name=".ScheduleServiceRecycleViewSummary"
+            android:label="Summary"/>
+
         <activity
             android:name=".NeedAccount"
             android:label="Need Account"
